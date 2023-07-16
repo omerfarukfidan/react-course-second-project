@@ -1,5 +1,8 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import MeetupList from "../components/meetups/MeetupList";
+
+/*
 const DUMMY_DATA = [
   {
     id: "m1",
@@ -20,12 +23,49 @@ const DUMMY_DATA = [
       "This is a first, amazing meetup which you definitely should not miss. It will be a lot of fun!",
   },
 ];
+*/
 
 function AllMeetupsPage() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadedMeetup, setLoadedMeetups] = useState([]);
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetch(
+      "https://react-getting-started-c25dc-default-rtdb.europe-west1.firebasedatabase.app/meetups.json"
+    )
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        const meetups = [];
+
+        for (const key in data){
+          const meetup ={
+              id: key,
+              ...data[key]
+          };
+
+          meetups.push(meetup);
+        }
+
+        setIsLoading(false);
+        setLoadedMeetups(meetups);
+      });
+  }, []);
+
+  if (isLoading) {
+    return (
+      <section>
+        <p>Loading...</p>
+      </section>
+    );
+  }
+
   return (
     <section>
       <h1>All Meetups</h1>
-    <MeetupList meetups={DUMMY_DATA} />
+      <MeetupList meetups={loadedMeetup} />
     </section>
   );
 }
