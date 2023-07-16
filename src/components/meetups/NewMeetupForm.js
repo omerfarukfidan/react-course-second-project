@@ -16,11 +16,11 @@ function NewMeetupForm(props) {
     const enteredAddres = addressInputRef.current.value;
     const enteredDescription = descriptionInputRef.current.value;
 
-    const meetupData = { 
-        title: enteredTitle,
-        image: enteredImage,
-        address: enteredAddres,
-        descrition: enteredDescription,
+    const meetupData = {
+      title: enteredTitle,
+      image: enteredImage,
+      address: enteredAddres,
+      descrition: enteredDescription,
     };
 
     props.onAddMeetup(meetupData);
@@ -43,7 +43,12 @@ function NewMeetupForm(props) {
         </div>
         <div className={classes.control}>
           <label htmlFor="description">Description</label>
-          <textarea type="description" required row="5" ref={descriptionInputRef}></textarea>
+          <textarea
+            type="description"
+            required
+            row="5"
+            ref={descriptionInputRef}
+          ></textarea>
         </div>
         <div className={classes.actions}>
           <button>Add Meetup</button>
