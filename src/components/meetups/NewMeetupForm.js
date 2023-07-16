@@ -8,19 +8,22 @@ function NewMeetupForm() {
       <form className={classes.form}>
         <div className={classes.control}>
           <label htmlFor="title">Meetup Title</label>
-          <input type="text" required id="title"></input>
+          <input type="text" required id="title" />
         </div>
         <div className={classes.control}>
           <label htmlFor="image">Meetup Image</label>
-          <input type="url" required id="image"></input>
+          <input type="url" required id="image" />
         </div>
         <div className={classes.control}>
-          <label htmlFor="address">Meetup Address</label>
-          <input type="text" required id="address"></input>
+          <label htmlFor="address">Address</label>
+          <input type="text" required id="address" />
         </div>
         <div className={classes.control}>
-          <label htmlFor="description">Meetup Descrition</label>
-          <input type="text" required id="descrition"></input>
+          <label htmlFor="description">Description</label>
+          <textarea type="description" required row="5"></textarea>
+        </div>
+        <div className={classes.actions}>
+          <button>Add Meetup</button>
         </div>
       </form>
     </Card>
